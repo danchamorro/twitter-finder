@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 
-export class Navbar extends Component {
-  static defaultProps = {
-    title: "Twitter Showcase",
-    icon: "fab fa-twitter"
-  };
+const Navbar = ({ icon, title }) => {
+  return (
+    <nav className="navbar bg-light">
+      <h1>
+        <i className={icon} />
+        {title}
+      </h1>
+    </nav>
+  );
+};
 
-  render() {
-    return (
-      <nav className="navbar bg-light">
-        <h1>
-          <i className={this.props.icon} />
-          {this.props.title}
-        </h1>
-      </nav>
-    );
-  }
-}
+Navbar.defaultProps = {
+  title: "Twitter Showcase",
+  icon: "fab fa-twitter"
+};
 
 export default Navbar;
