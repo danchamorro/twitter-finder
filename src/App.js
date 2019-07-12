@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
+import Navbar from "./components/layout/Navbar";
 
 export class App extends Component {
   render() {
     return (
       <div>
-        <h1>Twitter Showcase</h1>
+        <Navbar title="Twitter Showcase" icon="fab fa-twitter" />
       </div>
     );
   }
