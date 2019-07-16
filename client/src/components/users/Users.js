@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserItem from "./UserItem";
+import UserTweet from "./UserTweet";
 
 export class Users extends Component {
   state = {
@@ -27,9 +28,9 @@ export class Users extends Component {
 
   render() {
     return (
-      <div style={userStyle}>
+      <div>
         {this.state.users.map(user => (
-          <UserItem key={user.id} user={user} />
+          <UserTweet key={user.id} user={user} />
         ))}
       </div>
     );
