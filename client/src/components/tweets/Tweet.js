@@ -1,17 +1,17 @@
 import React from "react";
-import "./UserTweet.css";
+import "./Tweet.css";
 
-const UserTweet = ({ user: { text } }) => {
+const Tweet = ({ tweet: { text, user, created_at } }) => {
   return (
     <div className="col-12">
       <li className="tweet-card mt-3">
         <div className="tweet-content">
           <div className="tweet-header">
             <span className="fullname">
-              <strong>Login</strong>
+              <strong>{user.name}</strong>
             </span>
-            <span className="username">@Login</span>
-            <span className="tweet-time">- Jul 18</span>
+            <span className="username">@{user.screen_name}</span>
+            <span className="tweet-time">- {created_at}</span>
           </div>
           <div>
             <img className="tweet-card-avatar" src="#" alt="" />
@@ -43,4 +43,4 @@ const UserTweet = ({ user: { text } }) => {
   );
 };
 
-export default UserTweet;
+export default Tweet;

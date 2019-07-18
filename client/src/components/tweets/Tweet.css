@@ -39,5 +39,6 @@
 
 .tweet-footer {
   display: flex;
+  align-items: center;
 }
 /* END Main column*/
