@@ -31,6 +31,23 @@ app.get("/tweets/:search", (req, res) => {
   });
 });
 
+app.get("/users/:search", (req, res) => {
+  T.get(
+    "statuses/user_timeline",
+    { screen_name: req.params.search, count: 5 },
+    function(err, data, response) {
+      res.json(data);
+    }
+  );
+});
+
+// var params = { screen_name: "nodejs" };
+// T.get("statuses/user_timeline", params, function(error, tweets, response) {
+//   if (!error) {
+//     console.log(tweets);
+//   }
+// });
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
