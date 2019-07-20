@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/tweets/:search", (req, res) => {
-  T.get("search/tweets", { q: req.params.search, count: 5 }, function(
+  T.get("search/tweets", { q: req.params.search, count: 6 }, function(
     err,
     data,
     response
@@ -32,13 +32,13 @@ app.get("/tweets/:search", (req, res) => {
 });
 
 app.get("/users/:search", (req, res) => {
-  T.get(
-    "statuses/user_timeline",
-    { screen_name: req.params.search, count: 5 },
-    function(err, data, response) {
-      res.json(data);
-    }
-  );
+  T.get("users/search", { q: req.params.search, count: 6 }, function(
+    err,
+    data,
+    response
+  ) {
+    res.json(data);
+  });
 });
 
 // var params = { screen_name: "nodejs" };
