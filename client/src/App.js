@@ -6,10 +6,13 @@ import axios from "axios";
 import Tweets from "./components/tweets/Tweets";
 import Search from "./components/tweets/Search";
 import About from "./components/pages/About";
+import Users from "./components/users/Users";
 
 export class App extends Component {
   state = {
-    tweets: []
+    tweets: [],
+    users: [],
+    loading: false
   };
 
   searchTweets = async text => {
@@ -21,8 +24,18 @@ export class App extends Component {
     this.setState({ tweets: res.data.statuses });
   };
 
+  async componentDidMount() {
+    this.setState({ loading: true });
+
+    const res = await axios.get(`/users/dan`);
+    console.log("Users:", res.data);
+
+    this.setState({ users: res.data });
+  }
+
   render() {
-    const { tweets } = this.state;
+    const { tweets, users } = this.state;
+
     return (
       <Router>
         <div className="App">
@@ -41,6 +54,7 @@ export class App extends Component {
               />
               <Route exact path="/about" component={About} />
             </Switch>
+            <Users users={users} />
           </div>
         </div>
       </Router>
