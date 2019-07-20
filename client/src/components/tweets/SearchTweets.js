@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class Search extends Component {
+export class SearchTweets extends Component {
   state = {
     text: ""
   };
@@ -38,4 +38,4 @@ export class Search extends Component {
   }
 }
 
-export default Search;
+export default SearchTweets;

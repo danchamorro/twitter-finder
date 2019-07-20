@@ -4,7 +4,7 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import axios from "axios";
 import Tweets from "./components/tweets/Tweets";
-import Search from "./components/tweets/Search";
+import SearchTweets from "./components/tweets/SearchTweets";
 import About from "./components/pages/About";
 import Users from "./components/users/Users";
 
@@ -47,7 +47,7 @@ export class App extends Component {
                 path="/"
                 render={props => (
                   <Fragment>
-                    <Search searchTweets={this.searchTweets} />
+                    <SearchTweets searchTweets={this.searchTweets} />
                     <Tweets tweets={tweets} />
                   </Fragment>
                 )}
