@@ -9,11 +9,13 @@ import About from "./components/pages/About";
 import Users from "./components/users/Users";
 import Home from "./components/pages/Home";
 import SearchUsers from "./components/users/SearchUsers";
+import User from "./components/users/User";
 
 export class App extends Component {
   state = {
     tweets: [],
     users: [],
+    user: {},
     loading: false
   };
 
@@ -21,7 +23,6 @@ export class App extends Component {
     this.setState({ loading: true });
 
     const res = await axios.get(`/tweets/${text}`);
-    console.log(res.data.statuses);
 
     this.setState({ tweets: res.data.statuses });
   };
@@ -30,22 +31,22 @@ export class App extends Component {
     this.setState({ loading: true });
 
     const res = await axios.get(`/users/${username}`);
-    console.log("Users:", res.data);
 
     this.setState({ users: res.data });
   };
 
-  // async componentDidMount() {
-  //   this.setState({ loading: true });
+  // Get single user
+  getUser = async screenname => {
+    this.setState({ loading: true });
 
-  //   const res = await axios.get(`/users/dan`);
-  //   console.log("Users:", res.data);
+    const res = await axios.get(`/user/${screenname}`);
+    console.log("screen name:", res.data[0].screen_name);
 
-  //   this.setState({ users: res.data });
-  // }
+    this.setState({ user: res.data[0] });
+  };
 
   render() {
-    const { tweets, users } = this.state;
+    const { tweets, users, user } = this.state;
 
     return (
       <Router>
@@ -77,6 +78,13 @@ export class App extends Component {
                 )}
               />
               <Route exact path="/about" component={About} />
+              <Route
+                exact
+                path="/user/:screen_name"
+                render={props => (
+                  <User {...props} getUser={this.getUser} user={user} />
+                )}
+              />
             </Switch>
           </div>
         </div>

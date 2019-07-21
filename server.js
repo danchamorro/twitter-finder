@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+// Search all tweets
 app.get("/tweets/:search", (req, res) => {
   T.get("search/tweets", { q: req.params.search, count: 6 }, function(
     err,
@@ -31,6 +32,7 @@ app.get("/tweets/:search", (req, res) => {
   });
 });
 
+// Search all users
 app.get("/users/:search", (req, res) => {
   T.get("users/search", { q: req.params.search, count: 18 }, function(
     err,
@@ -41,6 +43,25 @@ app.get("/users/:search", (req, res) => {
   });
 });
 
+// Get Single User
+app.get("/user/:name", (req, res) => {
+  T.get("users/lookup", { screen_name: req.params.name }, function(
+    err,
+    data,
+    response
+  ) {
+    res.json(data);
+  });
+});
+
+// Get single user tweets
+app.get("/user-tweet/:id", (req, res) => {
+  T.get("", { screen_name: req.params.id }, function(err, data, response) {
+    res.json(data);
+  });
+});
+
+//
 // var params = { screen_name: "nodejs" };
 // T.get("statuses/user_timeline", params, function(error, tweets, response) {
 //   if (!error) {
