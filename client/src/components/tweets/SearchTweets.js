@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 
 export class SearchTweets extends Component {
   state = {
@@ -16,6 +17,14 @@ export class SearchTweets extends Component {
   render() {
     return (
       <div>
+        <Fragment>
+          <Link
+            to="/"
+            className="btn btn-primary mt-2 d-flex flex-row col-sm-2"
+          >
+            Back To Search
+          </Link>
+        </Fragment>
         <form className="form mt-1" onSubmit={this.onSubmit}>
           <input
             type="text"

@@ -7,6 +7,7 @@ import Tweets from "./components/tweets/Tweets";
 import SearchTweets from "./components/tweets/SearchTweets";
 import About from "./components/pages/About";
 import Users from "./components/users/Users";
+import Home from "./components/pages/Home";
 
 export class App extends Component {
   state = {
@@ -42,9 +43,12 @@ export class App extends Component {
           <Navbar title="Twitter Showcase" icon="fab fa-twitter" />
           <div className="container">
             <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
               <Route
                 exact
-                path="/"
+                path="/search-tweets"
                 render={props => (
                   <Fragment>
                     <SearchTweets searchTweets={this.searchTweets} />
@@ -54,7 +58,6 @@ export class App extends Component {
               />
               <Route exact path="/about" component={About} />
             </Switch>
-            <Users users={users} />
           </div>
         </div>
       </Router>
