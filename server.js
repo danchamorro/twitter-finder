@@ -32,7 +32,7 @@ app.get("/tweets/:search", (req, res) => {
 });
 
 app.get("/users/:search", (req, res) => {
-  T.get("users/search", { q: req.params.search, count: 6 }, function(
+  T.get("users/search", { q: req.params.search, count: 18 }, function(
     err,
     data,
     response
