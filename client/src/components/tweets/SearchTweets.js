@@ -22,7 +22,7 @@ export class SearchTweets extends Component {
             to="/"
             className="btn btn-primary mt-2 d-flex flex-row col-sm-2"
           >
-            Back To Search
+            Back Home
           </Link>
         </Fragment>
         <form className="form mt-1" onSubmit={this.onSubmit}>

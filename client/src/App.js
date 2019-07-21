@@ -8,6 +8,7 @@ import SearchTweets from "./components/tweets/SearchTweets";
 import About from "./components/pages/About";
 import Users from "./components/users/Users";
 import Home from "./components/pages/Home";
+import SearchUsers from "./components/users/SearchUsers";
 
 export class App extends Component {
   state = {
@@ -25,14 +26,23 @@ export class App extends Component {
     this.setState({ tweets: res.data.statuses });
   };
 
-  async componentDidMount() {
+  searchUsers = async username => {
     this.setState({ loading: true });
 
-    const res = await axios.get(`/users/dan`);
+    const res = await axios.get(`/users/${username}`);
     console.log("Users:", res.data);
 
     this.setState({ users: res.data });
-  }
+  };
+
+  // async componentDidMount() {
+  //   this.setState({ loading: true });
+
+  //   const res = await axios.get(`/users/dan`);
+  //   console.log("Users:", res.data);
+
+  //   this.setState({ users: res.data });
+  // }
 
   render() {
     const { tweets, users } = this.state;
@@ -53,6 +63,16 @@ export class App extends Component {
                   <Fragment>
                     <SearchTweets searchTweets={this.searchTweets} />
                     <Tweets tweets={tweets} />
+                  </Fragment>
+                )}
+              />
+              <Route
+                exact
+                path="/search-users"
+                render={props => (
+                  <Fragment>
+                    <SearchUsers searchUsers={this.searchUsers} />
+                    <Users users={users} />
                   </Fragment>
                 )}
               />

@@ -11,9 +11,9 @@ const Home = () => {
           <Link to="/search-tweets" className="btn btn-primary col-sm-3 m-1">
             Search Tweets
           </Link>
-          <button className="btn btn-primary col-sm-3 m-1 ">
+          <Link to="/search-users" className="btn btn-primary col-sm-3 m-1 ">
             Search Users
-          </button>
+          </Link>
         </div>
       </div>
     </div>

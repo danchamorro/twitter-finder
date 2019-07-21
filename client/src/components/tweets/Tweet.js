@@ -23,7 +23,7 @@ const Tweet = ({ tweet: { text, user, created_at, retweet_count } }) => {
           <div className="tweet-text">
             <p>{text}</p>
           </div>
-          <div className="tweet-footer">
+          <div className="tweet-footer flex-d justify-content-center">
             <div className="tweet-footer-btn">
               <i className="octicon octicon-comment" aria-hidden="true" />
               <span>{Math.floor(Math.random() * 101)}</span>
