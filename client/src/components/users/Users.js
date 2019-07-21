@@ -2,7 +2,6 @@ import React from "react";
 import UserItem from "./UserItem";
 
 const Users = ({ users }) => {
-  console.log("From APP", users);
   return (
     <div style={userStyle}>
       {users.map(user => (

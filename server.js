@@ -55,10 +55,14 @@ app.get("/user/:name", (req, res) => {
 });
 
 // Get single user tweets
-app.get("/user-tweet/:id", (req, res) => {
-  T.get("", { screen_name: req.params.id }, function(err, data, response) {
-    res.json(data);
-  });
+app.get("/user-tweets/:tweet", (req, res) => {
+  T.get(
+    "statuses/user_timeline",
+    { screen_name: req.params.tweet, count: 10 },
+    function(err, data, response) {
+      res.json(data);
+    }
+  );
 });
 
 //

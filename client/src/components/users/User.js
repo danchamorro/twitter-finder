@@ -9,10 +9,12 @@ const RoundImage = styled.img`
 export class User extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.screen_name);
+    this.props.getUserTweets(this.props.match.params.screen_name);
   }
 
   render() {
     const { screen_name, name } = this.props.user;
+    const { userTweets } = this.props;
 
     return (
       <Fragment>
@@ -20,7 +22,7 @@ export class User extends Component {
           Back Home
         </Link>
         <div className="card grid-2 mt-1">
-          <div className="all-center">
+          <div>
             <RoundImage
               src={`https://avatars.io/twitter/${screen_name}`}
               alt=""
@@ -30,6 +32,12 @@ export class User extends Component {
             <h1>{name}</h1>
           </div>
         </div>
+
+        {userTweets.map(tweet => (
+          <div className="card mt-1" key={tweet.id}>
+            <p>{tweet.text}</p>
+          </div>
+        ))}
       </Fragment>
     );
   }

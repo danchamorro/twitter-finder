@@ -15,6 +15,7 @@ export class App extends Component {
   state = {
     tweets: [],
     users: [],
+    userTweets: [],
     user: {},
     loading: false
   };
@@ -40,13 +41,21 @@ export class App extends Component {
     this.setState({ loading: true });
 
     const res = await axios.get(`/user/${screenname}`);
-    console.log("screen name:", res.data[0].screen_name);
 
     this.setState({ user: res.data[0] });
   };
 
+  // get single user tweets
+  getUserTweets = async screenname => {
+    this.setState({ loading: true });
+
+    const res = await axios.get(`/user-tweets/${screenname}`);
+
+    this.setState({ userTweets: res.data });
+  };
+
   render() {
-    const { tweets, users, user } = this.state;
+    const { tweets, users, user, userTweets } = this.state;
 
     return (
       <Router>
@@ -82,7 +91,13 @@ export class App extends Component {
                 exact
                 path="/user/:screen_name"
                 render={props => (
-                  <User {...props} getUser={this.getUser} user={user} />
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    user={user}
+                    getUserTweets={this.getUserTweets}
+                    userTweets={userTweets}
+                  />
                 )}
               />
             </Switch>
