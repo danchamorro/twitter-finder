@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -16,10 +17,6 @@ app.use(express());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 
 // Search all tweets
 app.get("/tweets/:search", (req, res) => {
@@ -65,13 +62,15 @@ app.get("/user-tweets/:tweet", (req, res) => {
   );
 });
 
-//
-// var params = { screen_name: "nodejs" };
-// T.get("statuses/user_timeline", params, function(error, tweets, response) {
-//   if (!error) {
-//     console.log(tweets);
-//   }
-// });
+// Serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+}
 
 const PORT = process.env.PORT || 5000;
 
