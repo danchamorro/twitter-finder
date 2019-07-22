@@ -3,6 +3,8 @@
 - Search tweets across Twitter. 
 - Find your favorite users and view recent tweets from them. 
 
+### [Live Preview](https://limitless-plateau-12632.herokuapp.com/)
+
 
 # Built With
 
